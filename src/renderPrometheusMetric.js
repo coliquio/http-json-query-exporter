@@ -1,5 +1,5 @@
 const renderMetric = (definition, measures) => {
-  if (typeof measures !== 'object') throw new Error(`No measures given for ${JSON.stringify(definition)}`);
+  if (typeof measures !== 'object' || measures === null) throw new Error(`No measures given for ${JSON.stringify(definition)}`);
   const valueLines = measures.map(measure => {
     const labels = Object.keys(measure).filter(key => key !== 'value').map(key => `${key}="${measure[key]}"`);
     return `${definition.name}{${labels}} ${measure.value}`;
