@@ -74,7 +74,7 @@ Define [JSONata](https://docs.jsonata.org/) queries to transform the http query 
 - The object `value` keys are used reserved and used as metric value
 - All other object keys are used as metric labels
 
-See also [http://try.jsonata.org/][http://try.jsonata.org/].
+Test transformations in [http://try.jsonata.org/](http://try.jsonata.org/).
 
 ### `tasks.prometheusMetric`
 
