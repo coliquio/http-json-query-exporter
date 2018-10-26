@@ -42,7 +42,7 @@ describe('controller', () => {
 items_per_slide_count{title="Wake up to WonderWidgets!"} 0
 items_per_slide_count{title="Overview"} 2
 `);
-        expect(res).to.have.header('Content-Type', 'text/plain; charset=utf-8')
+        expect(res).to.have.header('Content-Type', 'text/plain; charset=utf-8');
       })
       .catch(function (err) {
         throw err;

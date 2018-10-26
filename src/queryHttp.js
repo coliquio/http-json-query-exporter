@@ -8,7 +8,7 @@ module.exports = async (options) => {
       return res.data;
     })
     .catch((err) => {
-      console.error(err.stack, err.response.data)
-      throw err
-    })
+      console.error(err.stack, err.response.data);
+      throw err;
+    });
 };

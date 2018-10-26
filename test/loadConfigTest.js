@@ -11,7 +11,7 @@ describe('loadConfig', () => {
             url: 'https://elasticsearch.example.com/logs-*/_search',
             method: 'post',
             headers: {
-              "Content-Type": 'application/json'
+              'Content-Type': 'application/json'
             },
             data: `{
   "size": 0,
