@@ -29,8 +29,8 @@ Query http endpoints, transform and export response to prometheus.
 3. Returns prometheus metrics
 
     curl localhost:8000/all/metrics
-    # HELP items_per_slide_count this is my metric
-    # TYPE items_per_slide_count counter
+    \# HELP items_per_slide_count this is my metric
+    \# TYPE items_per_slide_count counter
     items_per_slide_count{title="Wake up to WonderWidgets!"} 0
     items_per_slide_count{title="Overview"} 2
 
