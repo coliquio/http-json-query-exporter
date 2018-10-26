@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "npx mocha"
+    "test": "npx mocha",
+    "lint": "npx eslint --fix ."
   },
   "author": "",
   "license": "MIT",
