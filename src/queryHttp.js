@@ -6,5 +6,9 @@ module.exports = async (options) => {
   }, options))
     .then(res => {
       return res.data;
-    });
+    })
+    .catch((err) => {
+      console.error(err.stack, err.response.data)
+      throw err
+    })
 };
