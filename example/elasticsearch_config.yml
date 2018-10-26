@@ -1,0 +1,61 @@
+tasks:
+  - query:
+      url: 'https://elasticsearch.example.com/logs-*/_search'
+      body: |
+        {
+          "size": 0,
+          "query": {
+            "range": {
+              "@timestamp": {
+                "gte": "now-3600s/s",
+                "lte": "now/s"
+              }
+            }
+          },
+          "aggs": {
+            "status_code_range": {
+              "range": {
+                  "field": "status_code",
+                  "ranges": [
+                    {
+                      "to": 199
+                    },
+                    {
+                      "from": 400
+                    }
+                  ]
+                  
+                },
+                "aggs": {
+                  "pages": {
+                    "terms": {
+                      "field": "req_path.keyword",
+                      "include" : "/.*",
+                      "size" : 10
+                    },
+                    "aggs": {
+                      "status_codes": {
+                        "terms": {
+                          "field": "status_code",
+                          "size" : 5
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+    transformation: |
+      $.aggregations[].status_code_range[].buckets[].pages[].buckets.(
+        $req_path := $.key;
+        $.status_codes.buckets.{
+          "path": $req_path,
+          "status_code": key,
+          "value": doc_count
+        }
+      )
+    prometheusMetric:
+      name: 'my_metric'
+      type: 'counter'
+      description: 'this is my metric'
