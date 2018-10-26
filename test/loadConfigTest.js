@@ -9,7 +9,11 @@ describe('loadConfig', () => {
         {
           query: {
             url: 'https://elasticsearch.example.com/logs-*/_search',
-            body: `{
+            method: 'post',
+            headers: {
+              "Content-Type": 'application/json'
+            },
+            data: `{
   "size": 0,
   "query": {
     "range": {
