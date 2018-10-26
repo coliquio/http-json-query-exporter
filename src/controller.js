@@ -9,6 +9,7 @@ app.get('/all/metrics', (req, res) => {
   loadConfig(CONFIG_PATH).then(config => {
     Promise.all(config.tasks.map(runTask))
       .then(lines => {
+        res.set({'Content-Type': 'text/plain'});
         res.send(lines.join('\n'));
       })
       .catch(e => {
