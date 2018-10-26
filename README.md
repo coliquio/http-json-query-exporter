@@ -42,7 +42,13 @@ items_per_slide_count{title="Overview"} 2
 
 ## Configuring tasks
 
-Use the YAML configuration like so:
+The configuration contains a collection of tasks. Each task consists of 3 steps:
+
+1. `query`
+2. `transformation`
+3. `prometheusMetric`
+
+Short example:
 
 ```yaml
 tasks:
@@ -68,13 +74,13 @@ items_per_slide_count{title="Wake up to WonderWidgets!"} 0
 items_per_slide_count{title="Overview"} 2
 ```
 
-### `task.query`
+### `query` step
 
 Define a http query here, the only mandatory argument is `url` and it must return valid `JSON`.
 
 All valid `axios.request({...})` parameters like `method`, `body`, etc. are accepted [https://github.com/axios/axios#request-config]([https://github.com/axios/axios#request-config]).
 
-### `tasks.transformation`
+### `transformation` step
 
 Define [JSONata](https://docs.jsonata.org/) queries to transform the http query result into a array of objects for exporting metrics:
 
@@ -83,7 +89,7 @@ Define [JSONata](https://docs.jsonata.org/) queries to transform the http query 
 
 Test transformations in [http://try.jsonata.org/](http://try.jsonata.org/).
 
-### `tasks.prometheusMetric`
+### `prometheusMetric` step
 
 Specify metric `name`, `description` and `type`. All labels and the value must be produced by previous `transformation` step.
 
