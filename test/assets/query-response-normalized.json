@@ -1,0 +1,37 @@
+[
+  {
+    "path": "/foo/bar",
+    "status_code": 404,
+    "value": 3
+  },
+  {
+    "path": "/foo/bar",
+    "status_code": 502,
+    "value": 1
+  },
+  {
+    "path": "/foo/baz",
+    "status_code": 502,
+    "value": 1
+  },
+  {
+    "path": "/lala/foo/bar",
+    "status_code": 502,
+    "value": 1
+  },
+  {
+    "path": "/lala/foo/bar",
+    "status_code": 502,
+    "value": 1
+  },
+  {
+    "path": "/lala/foo/bar/baz",
+    "status_code": 504,
+    "value": 2
+  },
+  {
+    "path": "/lala/foo/baz",
+    "status_code": 404,
+    "value": 1
+  }
+]

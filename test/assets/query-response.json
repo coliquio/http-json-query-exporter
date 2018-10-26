@@ -1,0 +1,130 @@
+{
+  "took": 127,
+  "timed_out": false,
+  "_shards": {
+    "total": 55,
+    "successful": 55,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 156506,
+    "max_score": 0,
+    "hits": []
+  },
+  "aggregations": {
+    "status_code_range": {
+      "buckets": [
+        {
+          "key": "*-199.0",
+          "to": 199,
+          "doc_count": 1819,
+          "pages": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": []
+          }
+        },
+        {
+          "key": "400.0-*",
+          "from": 400,
+          "doc_count": 2030,
+          "pages": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "/foo/bar",
+                "doc_count": 1,
+                "status_codes": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 404,
+                      "doc_count": 3
+                    },
+                    {
+                      "key": 502,
+                      "doc_count": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "/foo/baz",
+                "doc_count": 1,
+                "status_codes": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 502,
+                      "doc_count": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "/lala/foo/bar",
+                "doc_count": 1,
+                "status_codes": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 502,
+                      "doc_count": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "/lala/foo/bar",
+                "doc_count": 1,
+                "status_codes": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 502,
+                      "doc_count": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "/lala/foo/bar/baz",
+                "doc_count": 1,
+                "status_codes": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 504,
+                      "doc_count": 2
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "/lala/foo/baz",
+                "doc_count": 1,
+                "status_codes": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 404,
+                      "doc_count": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

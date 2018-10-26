@@ -1,0 +1,32 @@
+tasks:
+  - query:
+      url: 'https://httpbin.org/json'
+      # expected result:
+      # {
+      #   "slideshow": {
+      #     "author": "Yours Truly",
+      #     "date": "date of publication",
+      #     "slides": [
+      #       {
+      #         "title": "Wake up to WonderWidgets!",
+      #         "type": "all"
+      #       },
+      #       {
+      #         "items": [
+      #           "Why <em>WonderWidgets</em> are great",
+      #           "Who <em>buys</em> WonderWidgets"
+      #         ],
+      #         "title": "Overview",
+      #         "type": "all"
+      #       }
+      #     ],
+      #     "title": "Sample Slide Show"
+      #   }
+      # }
+    # http://try.jsonata.org/
+    transformation: |
+      $.slideshow.slides.{"title": title, "value": $count(items)}
+    prometheusMetric:
+      name: 'items_per_slide_count'
+      type: 'counter'
+      description: 'this is my metric'

@@ -1,0 +1,16 @@
+sudo: required
+services:
+  - docker
+language: node_js
+node_js:
+  - "10"
+install:
+  - npm install
+script:
+  - npm test
+  - npm run lint
+deploy:
+  provider: script
+  script: bash scripts/publish_docker.sh
+  on:
+    branch: master
