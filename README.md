@@ -28,11 +28,13 @@ Query http endpoints, transform and export response to prometheus.
 2. Runs transformation
 3. Returns prometheus metrics
 
-    curl localhost:8000/all/metrics
-    \# HELP items_per_slide_count this is my metric
-    \# TYPE items_per_slide_count counter
-    items_per_slide_count{title="Wake up to WonderWidgets!"} 0
-    items_per_slide_count{title="Overview"} 2
+```bash
+curl localhost:8000/all/metrics
+# HELP items_per_slide_count this is my metric
+# TYPE items_per_slide_count counter
+items_per_slide_count{title="Wake up to WonderWidgets!"} 0
+items_per_slide_count{title="Overview"} 2
+```
 
 ### Using docker
 
@@ -42,24 +44,29 @@ Query http endpoints, transform and export response to prometheus.
 
 Use the YAML configuration like so:
 
-    tasks:
-      - query:
-          url: 'https://httpbin.org/json'
-        transformation: |
-          $.slideshow.slides.{"title": title, "value": $count(items)}
-        prometheusMetric:
-          name: 'items_per_slide_count'
-          type: 'counter'
-          description: 'this is my metric'
-      # - <2nd-task>
-      # - <3rd...>
+```yaml
+tasks:
+  # task
+  - query:
+      url: 'https://httpbin.org/json'
+    transformation: |
+      $.slideshow.slides.{"title": title, "value": $count(items)}
+    prometheusMetric:
+      name: 'items_per_slide_count'
+      type: 'counter'
+      description: 'this is my metric'
+  # further task(s)
+  # - ...
+```
 
 This produces metrics like:
 
-    # HELP items_per_slide_count this is my metric
-    # TYPE items_per_slide_count counter
-    items_per_slide_count{title="Wake up to WonderWidgets!"} 0
-    items_per_slide_count{title="Overview"} 2
+```bash
+# HELP items_per_slide_count this is my metric
+# TYPE items_per_slide_count counter
+items_per_slide_count{title="Wake up to WonderWidgets!"} 0
+items_per_slide_count{title="Overview"} 2
+```
 
 ### `task.query`
 
@@ -78,7 +85,7 @@ Test transformations in [http://try.jsonata.org/](http://try.jsonata.org/).
 
 ### `tasks.prometheusMetric`
 
-Specify metric name, description and type like so.
+Specify metric `name`, `description` and `type`. All labels and the value must be produced by previous `transformation` step.
 
 ## CI Environment
 
