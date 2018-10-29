@@ -49,7 +49,7 @@ items_per_slide_count{title="Overview"} 2
       });
   });
 
-  it('returns http 500', async () => {
+  it('returns empty metrics', async () => {
     nock('https://httpbin.org')
       .get('/json')
       .reply(200, () => {
@@ -58,8 +58,27 @@ items_per_slide_count{title="Overview"} 2
     await chai.request(controller)
       .get('/all/metrics')
       .then(function (res) {
+        expect(res).to.have.status(200);
+        expect(res.text).to.eql(`
+# HELP items_per_slide_count this is my metric
+# TYPE items_per_slide_count counter
+
+`);
+        expect(res).to.have.header('Content-Type', 'text/plain; charset=utf-8');
+      })
+      .catch(function (err) {
+        throw err;
+      });
+  });
+  it('returns http 500 for failed http query', async () => {
+    nock('https://httpbin.org')
+      .get('/json')
+      .reply(500);
+    await chai.request(controller)
+      .get('/all/metrics')
+      .then(function (res) {
         expect(res).to.have.status(500);
-        expect(res.text).to.match(new RegExp('Error: Transformation failed for {"url":"https://httpbin.org/json"} with result {}'));
+        expect(res.text).to.match(new RegExp('Error: httpQuery failed Request failed with status code 500 with options={'));
       })
       .catch(function (err) {
         throw err;
