@@ -5,6 +5,10 @@ const loadConfig = require('./loadConfig');
 
 const CONFIG_PATH = process.env.CONFIG_PATH || './example/config.yml';
 
+app.get('/', (req, res) => {
+  res.send('<a href="/all/metrics">/all/metrics</a>')
+})
+
 app.get('/all/metrics', (req, res) => {
   loadConfig(CONFIG_PATH).then(config => {
     Promise.all(config.tasks.map(runTask))
