@@ -10,6 +10,6 @@ const transform = (expression, json) => {
   if (!Array.isArray(transformed)) {
     throw new Error(`transform did not return array ${expression} with json=${JSON.stringify(json).replace(/\\n/g, '')}`);
   }
-  return transformed  
+  return transformed;  
 };
 module.exports = transform;

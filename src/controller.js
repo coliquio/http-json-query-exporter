@@ -6,8 +6,8 @@ module.exports = (config) => {
   const app = express();
   
   app.get('/', (req, res) => {
-    res.send('<a href="/all/metrics">/all/metrics</a>')
-  })
+    res.send('<a href="/all/metrics">/all/metrics</a>');
+  });
   
   app.get('/all/metrics', (req, res) => {
     loadConfig(config.configPath).then(config => {

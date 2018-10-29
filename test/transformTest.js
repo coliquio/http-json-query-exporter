@@ -18,13 +18,13 @@ describe('transformTest', () => {
   });
 
   it('returns empty', () => {
-    const transformed = transform(`$.foo.bar`, JSON.parse(fs.readFileSync('./test/assets/query-response.json', 'utf8')));
+    const transformed = transform('$.foo.bar', JSON.parse(fs.readFileSync('./test/assets/query-response.json', 'utf8')));
     assert.deepEqual(transformed, []);
   });
 
   it('throws', () => {
     assert.throws(() => {
-      transform(`$.foo.`, {foo: 1});
+      transform('$.foo.', {foo: 1});
     }, {
       message: 'transform failed for $.foo. with json={"foo":1}'
     });

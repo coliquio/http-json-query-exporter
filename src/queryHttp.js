@@ -8,6 +8,6 @@ module.exports = async (options) => {
       return res.data;
     })
     .catch((err) => {
-      throw new Error(`httpQuery failed ${err.message} with options=${JSON.stringify(options).replace(/\\n/g, '')}`)
+      throw new Error(`httpQuery failed ${err.message} with options=${JSON.stringify(options).replace(/\\n/g, '')}`);
     });
 };
