@@ -8,10 +8,14 @@ const server = controller.listen(8000, () => {
 
 const shutdown = (signal, value) => {
   console.log('shutdown!');
+  setTimeout(() => {
+    console.log(`server stopped by ${signal} with value ${value}; non-graceful after 200ms timeout`);
+    process.exit(128 + value);
+  }, 200)
   server.close(() => {
     console.log(`server stopped by ${signal} with value ${value}`);
     process.exit(128 + value);
-  });
+  })
 };
 
 // NOTE: SIGKILL signal (9) cannot be intercepted and handled
