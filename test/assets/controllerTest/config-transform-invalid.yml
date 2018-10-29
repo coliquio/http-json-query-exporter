@@ -1,0 +1,9 @@
+tasks:
+  - query:
+      url: 'https://httpbin.org/json'
+    transformation: |
+      $.foo.
+    prometheusMetric:
+      name: 'my_metric'
+      type: 'counter'
+      description: 'this is my metric'

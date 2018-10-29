@@ -3,7 +3,7 @@ const loadConfig = require('../src/loadConfig');
 
 describe('loadConfig', () => {
   it('returns', async () => {
-    const config = await loadConfig('./test/assets/config.yml');
+    const config = await loadConfig('./test/assets/loadConfigTest/config.yml');
     assert.deepEqual(config, {
       tasks: [
         {

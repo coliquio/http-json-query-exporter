@@ -32,7 +32,7 @@ describe('controller', () => {
           }
         };
       });
-    await chai.request(controller)
+    await chai.request(controller({configPath: './test/assets/controllerTest/config.yml'}))
       .get('/all/metrics')
       .then(function (res) {
         expect(res).to.have.status(200);
@@ -55,7 +55,7 @@ items_per_slide_count{title="Overview"} 2
       .reply(200, () => {
         return {};
       });
-    await chai.request(controller)
+    await chai.request(controller({configPath: './test/assets/controllerTest/config.yml'}))
       .get('/all/metrics')
       .then(function (res) {
         expect(res).to.have.status(200);
@@ -70,15 +70,50 @@ items_per_slide_count{title="Overview"} 2
         throw err;
       });
   });
+
   it('returns http 500 for failed http query', async () => {
     nock('https://httpbin.org')
       .get('/json')
       .reply(500);
-    await chai.request(controller)
+    await chai.request(controller({configPath: './test/assets/controllerTest/config.yml'}))
       .get('/all/metrics')
       .then(function (res) {
         expect(res).to.have.status(500);
-        expect(res.text).to.match(new RegExp('Error: httpQuery failed Request failed with status code 500 with options={'));
+        expect(res.text).to.have.string('Error: httpQuery failed Request failed with status code 500 with options={');
+      })
+      .catch(function (err) {
+        throw err;
+      });
+  });
+
+  it('returns http 500 for failed transform', async () => {
+    nock('https://httpbin.org')
+      .get('/json')
+      .reply(200, () => {
+        return {foo: 1};
+      });
+    await chai.request(controller({configPath: './test/assets/controllerTest/config-transform-invalid.yml'}))
+      .get('/all/metrics')
+      .then(function (res) {
+        expect(res).to.have.status(500);
+        expect(res.text).to.have.string(`Error: transform failed for $.foo.\n with json={"foo":1}`);
+      })
+      .catch(function (err) {
+        throw err;
+      });
+  });
+
+  it('returns http 500 for transformation that does not return array', async () => {
+    nock('https://httpbin.org')
+      .get('/json')
+      .reply(200, () => {
+        return {foo: 1};
+      });
+    await chai.request(controller({configPath: './test/assets/controllerTest/config-transform-no-array.yml'}))
+      .get('/all/metrics')
+      .then(function (res) {
+        expect(res).to.have.status(500);
+        expect(res.text).to.have.string(`Error: transform did not return array $.foo\n with json={"foo":1}`);
       })
       .catch(function (err) {
         throw err;

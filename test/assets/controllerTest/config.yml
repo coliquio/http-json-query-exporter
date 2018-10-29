@@ -1,0 +1,9 @@
+tasks:
+  - query:
+      url: 'https://httpbin.org/json'
+    transformation: |
+      $.slideshow.slides.{"title": title, "value": $count(items)}
+    prometheusMetric:
+      name: 'items_per_slide_count'
+      type: 'counter'
+      description: 'this is my metric'

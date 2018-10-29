@@ -1,6 +1,10 @@
 /* eslint-disable no-console */
 
-const controller = require('./src/controller');
+const config = {
+  configPath: process.env.CONFIG_PATH || './example/config.yml'
+};
+
+const controller = require('./src/controller')(config);
 
 const server = controller.listen(8000, () => {
   console.log('Listening on port 8000');
