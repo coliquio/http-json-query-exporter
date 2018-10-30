@@ -8,7 +8,10 @@ module.exports = (config) => {
   const app = express();
   
   app.get('/', (req, res) => {
-    res.send('<a href="/all/metrics">/all/metrics</a>');
+    res.send(`
+    <a href="/metrics">/metrics</a> (internal)<br/>
+    <a href="/all/metrics">/all/metrics</a><br/>
+    `);
   });
 
   app.get('/_metrics', (req, res) => {
