@@ -130,10 +130,10 @@ items_per_slide_count{title="Overview"} 2
       .then(function (res) {
         expect(res).to.have.status(200);
         expect(res.text).to.have.eql(`
-# HELP http_json_query_exporter_error_count Number of errors in http json query exporter
-# TYPE http_json_query_exporter_error_count counter
-http_json_query_exporter_error_count{foo="1"} 1
-http_json_query_exporter_error_count{bar="2",foo="1"} 1
+# HELP http_json_query_exporter_query_count Number of errors in http json query exporter
+# TYPE http_json_query_exporter_query_count counter
+http_json_query_exporter_query_count{foo="1"} 1
+http_json_query_exporter_query_count{bar="2",foo="1"} 1
 `);
       })
       .catch(function (err) {

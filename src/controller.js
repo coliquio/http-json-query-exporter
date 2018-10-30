@@ -20,7 +20,7 @@ module.exports = (config) => {
       return Object.assign({value: internalMetricCounter.get(labels)}, labels)
     })
     res.send(renderPrometheusMetric({
-      name: 'http_json_query_exporter_error_count',
+      name: 'http_json_query_exporter_query_count',
       description: 'Number of errors in http json query exporter',
       type: 'counter'
     }, measures))
