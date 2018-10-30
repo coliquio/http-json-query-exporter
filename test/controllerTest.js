@@ -1,4 +1,5 @@
 const controller = require('../src/controller');
+const internalMetricCounter = require('../src/internalMetricCounter');
 const nock = require('nock');
 const chai = require('chai');
 const {expect} = chai;
@@ -114,6 +115,26 @@ items_per_slide_count{title="Overview"} 2
       .then(function (res) {
         expect(res).to.have.status(500);
         expect(res.text).to.have.string('Error: transform did not return array $.foo\n with json={"foo":1}');
+      })
+      .catch(function (err) {
+        throw err;
+      });
+  });
+
+  it('returns internal metrics', async () => {
+    internalMetricCounter.resetState()
+    internalMetricCounter.increment({foo: 1})
+    internalMetricCounter.increment({foo: 1, bar: 2})
+    await chai.request(controller({configPath: './test/assets/controllerTest/config.yml'}))
+      .get('/_metrics')
+      .then(function (res) {
+        expect(res).to.have.status(200);
+        expect(res.text).to.have.eql(`
+# HELP http_json_query_exporter_error_count Number of errors in http json query exporter
+# TYPE http_json_query_exporter_error_count counter
+http_json_query_exporter_error_count{foo="1"} 1
+http_json_query_exporter_error_count{bar="2",foo="1"} 1
+`);
       })
       .catch(function (err) {
         throw err;
