@@ -126,7 +126,7 @@ items_per_slide_count{title="Overview"} 2
     internalMetricCounter.increment({foo: 1})
     internalMetricCounter.increment({foo: 1, bar: 2})
     await chai.request(controller({configPath: './test/assets/controllerTest/config.yml'}))
-      .get('/_metrics')
+      .get('/metrics')
       .then(function (res) {
         expect(res).to.have.status(200);
         expect(res.text).to.have.eql(`

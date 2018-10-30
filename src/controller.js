@@ -14,7 +14,7 @@ module.exports = (config) => {
     `);
   });
 
-  app.get('/_metrics', (req, res) => {
+  app.get('/metrics', (req, res) => {
     res.set({'Content-Type': 'text/plain'});
     const measures = internalMetricCounter.getLabels().map(labels => {
       return Object.assign({value: internalMetricCounter.get(labels)}, labels)
