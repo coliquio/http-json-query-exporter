@@ -114,7 +114,7 @@ items_per_slide_count{title="Overview"} 2
       .get('/all/metrics')
       .then(function (res) {
         expect(res).to.have.status(500);
-        expect(res.text).to.have.string('Error: transform did not return array $.foo\n with json={"foo":1}');
+        expect(res.text).to.have.string('Error: transform did not return array for $.foo\n with json={"foo":1}');
       })
       .catch(function (err) {
         throw err;

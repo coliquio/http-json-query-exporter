@@ -22,6 +22,19 @@ describe('transformTest', () => {
     assert.deepEqual(transformed, []);
   });
 
+  it('returns object wrapped in array object', () => {
+    const transformed = transform('$.foo', {foo: {bar: 1}});
+    assert.deepEqual(transformed, [{bar: 1}]);
+  });
+
+  it('throws if not object', () => {
+    assert.throws(() => {
+      transform('1', {foo: 1});
+    }, {
+      message: 'transform did not return array for 1 with json={"foo":1}'
+    });
+  });
+
   it('throws', () => {
     assert.throws(() => {
       transform('$.foo.', {foo: 1});
