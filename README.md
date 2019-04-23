@@ -4,6 +4,8 @@
 
 Query http endpoints, transform and export response to prometheus.
 
+![docs/concept.png](docs/concept.png)
+
 ## Features
 
 - Call any http endpoint that returns valid `JSON`
@@ -74,13 +76,17 @@ items_per_slide_count{title="Wake up to WonderWidgets!"} 0
 items_per_slide_count{title="Overview"} 2
 ```
 
-### `query` step
+### Detailed process
+
+![docs/task.png](docs/task.png)
+
+### 1. `query` step
 
 Define a http query here, the only mandatory argument is `url` and it must return valid `JSON`.
 
 All valid `axios.request({...})` parameters like `method`, `body`, etc. are accepted [https://github.com/axios/axios#request-config]([https://github.com/axios/axios#request-config]).
 
-### `transformation` step
+### 2. `transformation` step
 
 Define [JSONata](https://docs.jsonata.org/) queries to transform the http query result into a array of objects for exporting metrics:
 
@@ -89,7 +95,7 @@ Define [JSONata](https://docs.jsonata.org/) queries to transform the http query 
 
 Test transformations in [http://try.jsonata.org/](http://try.jsonata.org/).
 
-### `prometheusMetric` step
+### 3. `prometheusMetric` step
 
 Specify metric `name`, `description` and `type`. All labels and the value must be produced by previous `transformation` step.
 

@@ -1,0 +1,10 @@
+digraph g {
+  http_json_query_exporter [fillcolor="lightblue",style=filled]
+
+  prometheus -> http_json_query_exporter [label="pull"]
+
+  http_json_query_exporter -> rest_apps
+  http_json_query_exporter -> graphql_apps
+  http_json_query_exporter -> elasticsearch
+  http_json_query_exporter -> "any http endpoint\nwith json response"
+}

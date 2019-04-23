@@ -1,0 +1,15 @@
+digraph g {
+  query -> transform -> prometheus_metric
+
+  # 1
+  query -> http
+  http -> query [label="{\"items\": [...]}"]
+  
+  # 2
+  transform -> jsonata [label="$.items.{...}"]
+  jsonata -> transform [label="[{\"value\":4,\"name\":\"foo\",...},\n{\"value\":1,\"name\":\"bar\",...}]"]
+
+  # 3
+  prometheus_metric -> "item_count{name=\"foo\",...}=4\nitem_count{name=\"bar\",...}=1"
+  "item_count{name=\"foo\",...}=4\nitem_count{name=\"bar\",...}=1" [shape=rect]
+}
