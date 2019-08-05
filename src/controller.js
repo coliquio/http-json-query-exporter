@@ -35,11 +35,13 @@ module.exports = (config) => {
           res.send(lines.join('\n'));
         })
         .catch(e => {
+          console.error(e);
           internalMetricCounter.increment({metric: 'all', state: 'error'})
           res.status(500).send(e.stack);
         });
     })
       .catch(e => {
+        console.error(e);
         internalMetricCounter.increment({metric: 'all', state: 'error'})
         res.status(500).send(e.stack);
       });
