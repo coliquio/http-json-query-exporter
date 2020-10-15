@@ -122,9 +122,9 @@ items_per_slide_count{title="Overview"} 2
   });
 
   it('returns internal metrics', async () => {
-    internalMetricCounter.resetState()
-    internalMetricCounter.increment({foo: 1})
-    internalMetricCounter.increment({foo: 1, bar: 2})
+    internalMetricCounter.resetState();
+    internalMetricCounter.increment({foo: 1});
+    internalMetricCounter.increment({foo: 1, bar: 2});
     await chai.request(controller({configPath: './test/assets/controllerTest/config.yml'}))
       .get('/metrics')
       .then(function (res) {
