@@ -18,9 +18,9 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "eslint": "^5.16.0",
-    "express": "^4.16.4",
-    "js-yaml": "^3.13.1",
-    "jsonata": "^1.5.4"
+    "eslint": "^8.1.0",
+    "express": "^4.17.1",
+    "js-yaml": "^4.1.0",
+    "jsonata": "^1.8.5"
   }
 }
