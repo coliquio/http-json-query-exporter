@@ -3,9 +3,9 @@ services:
   - docker
 language: node_js
 node_js:
-  - "10"
   - "14"
-  - "12"
+  - "16"
+  - "17"
 install:
   - npm install
 script:

@@ -18,7 +18,7 @@ describe('runTask', () => {
     nock('https://elasticsearch.example.com')
       .get('/logs-*/_search')
       .reply(200, (uri, requestBody) => {
-        assert.deepEqual(JSON.parse(requestBody), queryBody);
+        assert.deepEqual(requestBody, queryBody);
         return {
           vals: [
             {name: 'foo', descr: 'baz', value: 1},

@@ -11,16 +11,16 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.2.0",
-    "mocha": "^8.1.3",
-    "nock": "^10.0.1"
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.1.3",
+    "nock": "^13.1.4"
   },
   "dependencies": {
-    "axios": "^0.18.1",
-    "eslint": "^5.16.0",
-    "express": "^4.16.4",
-    "js-yaml": "^3.13.1",
-    "jsonata": "^1.5.4"
+    "axios": "^0.24.0",
+    "eslint": "^8.1.0",
+    "express": "^4.17.1",
+    "js-yaml": "^4.1.0",
+    "jsonata": "^1.8.5"
   }
 }
