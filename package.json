@@ -11,10 +11,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.2.0",
-    "mocha": "^8.1.3",
-    "nock": "^10.0.1"
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.1.3",
+    "nock": "^13.1.4"
   },
   "dependencies": {
     "axios": "^0.24.0",
