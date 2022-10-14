@@ -6,6 +6,7 @@ node_js:
   - "14"
   - "16"
   - "17"
+  - "18"
 install:
   - npm install
 script:
