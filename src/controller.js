@@ -35,13 +35,23 @@ module.exports = (config) => {
           res.send(lines.join('\n'));
         })
         .catch(e => {
-          console.error(e);
+          console.error(JSON.stringify({
+            message: 'Error in runTask: ' + e,
+            context: {
+              stack: e.stack
+            }
+          }));
           internalMetricCounter.increment({metric: 'all', state: 'error'});
           res.status(500).send(e.stack);
         });
     })
       .catch(e => {
-        console.error(e);
+        console.error(JSON.stringify({
+          message: 'Error in loadConfig: ' + e,
+          context: {
+            stack: e.stack
+          }
+        }));
         internalMetricCounter.increment({metric: 'all', state: 'error'});
         res.status(500).send(e.stack);
       });
